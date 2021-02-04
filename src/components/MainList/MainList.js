@@ -22,14 +22,14 @@ const MainList = (props) => {
   const notes = useContext(NoteContext).notes;
 
   const renderNotes = (id) => {
-    if (notes) {
+    if (notes && notes.length > 0) {
       return notes
-        .filter((note) => note.folderId === id || !id)
+        .filter((note) => note.folder_id === id || !id)
         .map((filteredNote) => (
           <Note
             key={filteredNote.id}
             id={filteredNote.id}
-            title={filteredNote.name}
+            title={filteredNote.title}
           />
         ));
     }

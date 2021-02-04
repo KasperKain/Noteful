@@ -10,14 +10,13 @@ const EXPANDED = styled.div`
 `;
 
 const NoteExpanded = (props) => {
-  const note = useContext(NoteContext).notes.find(
-    (note) => note.id === props.match.params.noteID
-  );
+  const notes = useContext(NoteContext).notes;
+  const note = notes.find((note) => note.id == props.match.params.noteID);
 
   return (
     <EXPANDED className='NoteExpanded'>
-      <Note title={note.name} id={note.id} />
-      <NoteDetail message={note.content} />
+      <Note title={note.title} id={note.id} />
+      <NoteDetail message={note.body} />
     </EXPANDED>
   );
 };

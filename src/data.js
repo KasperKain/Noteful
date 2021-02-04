@@ -1,4 +1,4 @@
-const endPoint = 'http://localhost:9090';
+const endPoint = 'https://shielded-fjord-67243.herokuapp.com';
 
 export const GetAllNotes = () => {
   return fetchData(`${endPoint}/notes`);
@@ -9,9 +9,14 @@ export const GetAllFolders = () => {
 };
 
 export const DeleteNote = (id) => {
-  console.log('Notes in server : ');
-  console.log(fetchData(`${endPoint}/notes/${id}`));
   return fetchData(`${endPoint}/notes/${id}`, {
+    method: 'DELETE',
+    'Content-Type': 'application/json',
+  });
+};
+
+export const DeleteFolder = (id) => {
+  return fetchData(`${endPoint}/folders/${id}`, {
     method: 'DELETE',
     'Content-Type': 'application/json',
   });

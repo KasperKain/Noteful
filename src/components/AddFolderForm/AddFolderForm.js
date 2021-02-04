@@ -49,7 +49,7 @@ const AddFolderForm = () => {
       setMessage(err);
     } else {
       const newFolder = {
-        id: Math.floor(1 + Math.random() * 10000).toString(),
+        id: Math.floor(1 + Math.random() * 10000),
         name: title,
       };
 

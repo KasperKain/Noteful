@@ -52,10 +52,10 @@ const AddNoteForm = () => {
       setMessage(err);
     } else {
       const newNote = {
-        id: Math.floor(1 + Math.random() * 10000).toString(),
-        name: title,
-        folderId: folderId,
-        content: body,
+        id: Math.floor(1 + Math.random() * 10000),
+        title: title,
+        folder_id: folderId,
+        body: body,
       };
       AddNote(newNote).then(() => {
         addNoteContext(newNote);
@@ -73,11 +73,13 @@ const AddNoteForm = () => {
   };
 
   const buildFolderOptions = () => {
-    return foldersContext.map((folder) => (
-      <option key={folder.id} name={folder.id} value={folder.id}>
-        {folder.name}
-      </option>
-    ));
+    if (foldersContext) {
+      return foldersContext.map((folder) => (
+        <option key={folder.id} name={folder.id} value={folder.id}>
+          {folder.name}
+        </option>
+      ));
+    }
   };
 
   return (

@@ -9,6 +9,7 @@ import ExitFolderButton from '../ExitFolderButton/ExitFolderButton';
 import styled from 'styled-components';
 const Aside = styled.aside`
   flex: 1;
+  overflow-y: auto;
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
@@ -33,26 +34,29 @@ const NavBar = (props) => {
   const notes = useContext(NoteContext).notes;
 
   const renderFolders = (id, noteID) => {
-    let foldersToRender = [];
+    if (folders) {
+      let foldersToRender = [];
 
-    if (noteID) {
-      const noteFolderId = notes.filter((note) => note.id === noteID)[0]
-        .folderId;
+      if (noteID) {
+        const noteFolderId = notes.filter((note) => note.id === noteID);
 
-      foldersToRender = folders.filter((folder) => folder.id === noteFolderId);
-    } else {
-      foldersToRender = folders.filter(
-        (folder) => !id || !noteID || folder.id === id
-      );
+        foldersToRender = folders.filter(
+          (folder) => folder.id === noteFolderId
+        );
+      } else {
+        foldersToRender = folders.filter(
+          (folder) => !id || !noteID || folder.id === id
+        );
+      }
+
+      return foldersToRender.map((folder) => (
+        <Folder key={folder.id} id={folder.id} title={folder.name} />
+      ));
     }
-
-    return foldersToRender.map((folder) => (
-      <Folder key={folder.id} id={folder.id} title={folder.name} />
-    ));
   };
 
   const renderBackButton = () => {
-    if (props.match.params.folderID) {
+    if (props.match.params.folder_id) {
       return <ExitFolderButton />;
     }
   };
@@ -60,7 +64,7 @@ const NavBar = (props) => {
   return (
     <Aside item className='NavBar'>
       <UL direction='row'>
-        {renderFolders(props.match.params.folderID, props.match.params.noteID)}
+        {renderFolders(props.match.params.folder_id, props.match.params.noteID)}
         <Route path='/' exact component={AddFolderButton} />
         {renderBackButton()}
       </UL>

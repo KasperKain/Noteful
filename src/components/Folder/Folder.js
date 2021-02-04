@@ -36,12 +36,12 @@ const Folder = (props) => {
 };
 
 Folder.propTypes = {
-  id: PropTypes.string.isRequired,
+  id: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,
 };
 
 Folder.defaultProps = {
-  id: 'id',
+  id: 0,
   title: 'untitled',
 };
 

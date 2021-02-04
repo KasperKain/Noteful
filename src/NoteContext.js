@@ -9,6 +9,10 @@ export const NoteProvider = (props) => {
     setNotes(notes.filter((note) => note.id !== id));
   };
 
+  const deleteFolder = (id) => {
+    setFolders(folders.filter((folder) => folder.id !== id));
+  };
+
   const addNote = (note) => {
     const newNotes = notes;
     newNotes.push(note);
@@ -32,6 +36,7 @@ export const NoteProvider = (props) => {
     deleteNote: deleteNote,
     addNote: addNote,
     addFolder: addFolder,
+    deleteFolder: deleteFolder,
   };
 
   useEffect(() => {

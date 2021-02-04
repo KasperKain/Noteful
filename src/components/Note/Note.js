@@ -63,12 +63,12 @@ const Note = (props) => {
 };
 
 Note.propTypes = {
-  id: PropTypes.string.isRequired,
+  id: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,
 };
 
 Note.defaultProps = {
-  id: 'id',
+  id: 0,
   title: 'untitled',
 };
 
